@@ -10,16 +10,16 @@ class Clicker:
     def start_clicker_on_current_pos(self):
         while True:
             point = position()
-            click(point.x, point.y)
+            click(x=point.x, y=point.y, clicks=20)
             self.on_exit()
 
-    def start_clicker(self, x: int, y:int):
+    def start_clicker(self, x: int, y: int):
         while True:
-            click(x,y)
+            click(x=x, y=y,clicks=20)
             self.on_exit()
 
     def thread_clicker(self, x: int = None, y: int = None, amount: int = 1):
-        [Thread(self.start_clicker_on_current_pos()).start() if x is None or y is None else Thread(self.start_clicker(x,y)).start() for _ in range(amount)]
+        [Thread(self.start_clicker_on_current_pos()).start() if x is None or y is None else Thread(self.start_clicker(x, y)).start() for _ in range(amount)]
 
     def get_current_position(self):
         while True:
@@ -27,7 +27,8 @@ class Clicker:
             print(f'x = {point.x}, y = {point.y}')
             sleep(1)
 
+
 if __name__ == '__main__':
     sleep(5)
     clicker = Clicker()
-    clicker.thread_clicker(amount=5)
+    clicker.thread_clicker(amount=12)
